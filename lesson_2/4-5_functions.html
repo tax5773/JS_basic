@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function sum(a, b) {
+        return a + b
+    }
+
+    function sub(a, b) {
+        return a - b
+    }
+
+    function div(a, b) {
+        return a / b
+    }
+
+    function multi(a, b) {
+        return a * b
+    }
+
+    function mathOperation(arg1, arg2, operation) {
+        switch (operation) {
+            case 'sum':
+                return sum(arg1, arg2);
+            case 'sub':
+                return sub(arg1, arg2);
+            case 'div':
+                return div(arg1, arg2);
+            case 'multi':
+                return multi(arg1, arg2);
+            default:
+                console.log("Операция не предусмотрена");
+                break;
+        }
+    }
+
+    console.log(mathOperation(12, 3, "sum"));
+    console.log(mathOperation(12, 3, "sub"));
+    console.log(mathOperation(12, 3, "div"));
+    console.log(mathOperation(12, 3, "multi"));
+    console.log(mathOperation(12, 3, "square"));
+</script>
+
+</body>
+</html>
