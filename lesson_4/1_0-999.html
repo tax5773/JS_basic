@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    'use strict';
+
+    let num = +prompt("Введите целое значение от 0 до 999");
+    if (isNaN(num) || num < 0 || num > 999 || Number.isInteger(num) !== true){
+        alert("Введите только целое, положительное число в диапазоне от 0 до 999");
+    } else {
+        let str = String(num);
+        let propNum = {
+            hundreds: Number(str.charAt(str.length - 3)),
+            tens: Number(str.charAt(str.length - 2)),
+            units: Number(str.charAt(str.length - 1))
+        }
+        console.log(propNum);
+    }
+</script>
+</body>
+</html>
