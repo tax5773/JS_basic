@@ -5,7 +5,7 @@ let mover = {
      */
     getDirection() {
         // Доступные значения ввода.
-        const availableDirections = [1, 2, 3, 4, 6, 7, 8, 9 ];
+        const availableDirections = [1, 2, 3, 4, 6, 7, 8, 9];
 
         while (true) {
             // Получаем от пользователя направление.
@@ -37,40 +37,60 @@ let mover = {
             y: player.y,
         };
         // Определяем направление и обновляем местоположение игрока в зависимости от направления.
-        if(nextPosition.y++ < config.colsCount && nextPosition.x++ < config.rowsCount && nextPosition.x-- > 0 && nextPosition.y-- > 0) {
-            switch (direction) {
-                case 2:
+
+        switch (direction) {
+            case 2:
+                if (player.y !== (config.rowsCount - 1)) {
                     nextPosition.y++;
-                    break;
-                case 4:
+                }
+                break;
+            case 4:
+                if (player.x !== 0) {
                     nextPosition.x--;
-                    break;
-                case 6:
+                }
+                break;
+            case 6:
+                if (player.x !== (config.colsCount - 1)) {
                     nextPosition.x++;
-                    break;
-                case 8:
+                }
+                break;
+            case 8:
+                if (player.y !== 0) {
                     nextPosition.y--;
-                    break;
-                case 1:
+                }
+                break;
+            case 1:
+                if (player.y !== (config.rowsCount - 1)) {
                     nextPosition.y++;
+                }
+                if (player.x !== 0) {
                     nextPosition.x--;
-                    break;
-                case 3:
+                }
+                break;
+            case 3:
+                if (player.y !== (config.rowsCount - 1)) {
                     nextPosition.y++;
+                }
+                if (player.x !== (config.colsCount - 1)) {
                     nextPosition.x++;
-                    break;
-                case 7:
+                }
+                break;
+            case 7:
+                if (player.y !== 0) {
                     nextPosition.y--;
+                }
+                if (player.x !== 0) {
                     nextPosition.x--;
-                    break;
-                case 9:
+                }
+                break;
+            case 9:
+                if (player.y !== 0) {
                     nextPosition.y--;
+                }
+                if (player.x !== (config.colsCount - 1)) {
                     nextPosition.x++;
-                    break;
-            }
-        } else {
-            nextPosition.x = player.x;
-            nextPosition.y = player.y;
+                }
+                break;
         }
 
 
