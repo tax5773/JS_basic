@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let endings = ["рубль", "рубля", "рублей"];
+    let num = +prompt("Введите сколько вы хотите положить денег на счет в рублях");
+    if (isNaN(num)){
+        alert("Введите только число.")
+    } else {
+        let str = String(num);
+        let index = Number(str.charAt(str.length - 2) + str.charAt(str.length - 1));
+        let indexLast = Number(str.charAt(str.length - 1));
+        if (index >= 5 && index <= 20 || indexLast === 0){
+            alert("На счету " + num + " " + endings[2])
+        } else if (indexLast >= 5 && indexLast <= 9 ){ //я спрециально тут второй раз написал условие для того чтобы сначала отыгрывали окончания бинарного индекса, а потом уже сисстема переходила на одинарный
+            alert("На счету " + num + " " + endings[2]);
+        } else if (indexLast >= 2 && indexLast <= 4 ){
+            alert("На счету " + num + " " + endings[1]);
+        } else if (indexLast === 1){
+            alert("На счету " + num + " " + endings[0]);
+        }
+    }
+    
+
+
+</script>
+</body>
+</html>

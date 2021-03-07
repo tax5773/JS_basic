@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <style>
+        i {
+            font-size: 50px;
+        }
+        .golden {
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+    <i id="first" class="fas fa-star"></i>
+    <i id="second" class="fas fa-star"></i>
+    <i id="third" class="fas fa-star"></i>
+    <i id="fourth" class="fas fa-star"></i>
+    <i id="fifth" class="fas fa-star"></i>
+
+    <!-- Задание. Используя заготовку, сделайте чтобы при наведении на вторую звезду
+    подсвечивались первая и вторая звезды. При наведени на третью звезду подсвечивались
+    первая, вторая и третья звезды, и т.д. 
+    mouseover - это событие срабатывает когда мы наводим на элемент.
+    mouseout - это событие срабатывает когда мы перестаем наводить на элемент.
+	Вы можете пойти более продвинутым путем, и получать предыдущий элемент 
+	например с помощью https://mzl.la/3a4SPlR
+    -->
+
+    <script>
+        let firstStar = document.getElementById('first');
+        let secondStar = document.getElementById('second');
+        let thirdStar = document.getElementById('third');
+        let fourthStar = document.getElementById('fourth');
+        let fifthStar = document.getElementById('fifth');
+
+        let goldenClass = 'golden';
+
+        // Ваши советы про то что
+        //стоит разбивать на отдельные методы и действия как в игрушках
+        //которые вы нам показывали, учел. Но мне для понимания конкретно сейчас проще
+        // пользоваться таким методом. Логику вижу лучше. Следующие дз
+        // уже буду писать красиво. Извините если пойдет кровь сейчас из глаз.
+
+        // Тут я искал решение самостоятельно. мне нужен ваш небольшой анализ.
+        // программа работает, но с глюком.
+        // далее комменты напротив трудных мест будут.
+
+        let allStars = document.querySelectorAll('i'); // делаем коллекуию
+        allStars.forEach(function(event){ // перебираем коллекцию. event - конкретный эл. коллекции
+            event.addEventListener('mouseover', function() {
+                while (event) {// поке есть ел. цикл будет продолжаться.
+                    if (!event.classList.contains('goldenClass')) {
+                        event.classList.add(goldenClass);
+                        if (event.previousElementSibling != null){//это я поставил, потому что когда event становится null, то не работает while при mouseout дальше
+                            event = event.previousElementSibling;
+                        } else {return event} // тут возвращаем эл. пока он не испортился (не стал null)
+                    }//то что выше этой линии раотает нормально
+                }
+            });
+            //тут начинаются проблеммы. Работает через раз. Когда глючит, тогда все звезды загараются куда бы ты не навел.
+
+            //смотрите, логика следующая: при mouseover у нас вибирается любая звезда
+            // и от нее в сторону уменьшения выбираются эл. и по перебору каждому присваивается
+            // goldenClass. Пока не дойдет до первой звезды. получается когда начинает работать
+            // mouseout, то он берет самое первое значение (на чем остановились) и начинает идти вверх, т.е убирает звезды
+            //слева на право, но я так понял он убирает из ВСЕХ 5-ти звезд goldenClass, и дальше идет в бесконечность
+            //поэтому потом и глючит. Я правильно понял как работает под капотом? Поясните что происходит на самом деле.
+            // чтобы вас не сильно напрягать, не пишите решение задания. Я посмотрю в ваших решениях. Просто логику обьясните
+            //что у меня тут происходит, и в чем косяк такого метода. Спасибо.
+            event.addEventListener('mouseout', function() {
+                while (event) {
+                    event.classList.remove(goldenClass);
+                    if (event.nextElementSibling != null){ // это если у правого предела тоже становится null
+                        event = event.nextElementSibling;
+                    } else {return event}
+                }
+            })
+        });
+
+
+    </script>
+</body>
+</html>

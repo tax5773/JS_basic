@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    'use strict';
+
+    // в игре не хватает проверки введенного значения на NaN, его смогу написать позже. Так же нужно отколибровать выбор случайного
+    // элемента из массива hushAswrs(). Иногда выдает одинаковые значения. Тоже знаю как его дописать позже. Учитывая что дз сдаю с опозданием,
+    // хочу чтобы вы все-таки посмотрели основную логику и сделали замечания до того как успеете проверить дз по ссылки.
+    // особенно отцените shuffle() !! Я всю голову сломал чтобы понять как его написать. Пока тяжело дается учеба, многое
+    // заставляет болеть мозг. Пока я на стадии : "Дунем, плюнем, и надежно склеим скотчем" Вроде работает правильно, но
+    // мне кажется что я все собираю на костылях. Очень нужны ваши комментарии. И чем больше тем лучше.
+
+    //вспомогательная функция
+    function putToCache(elem, cache){
+        if(cache.indexOf(elem) != -1){
+            return;
+        }
+        let i = Math.floor(Math.random()*(cache.length + 1));
+        cache.splice(i, 0, elem);
+    }
+    //функция, возвращающая компаратор
+    function madness(){
+        let cache = [];
+        return function(a, b){
+            putToCache(a, cache);
+            putToCache(b, cache);
+            return cache.indexOf(b) - cache.indexOf(a);
+        }
+    }
+    //собственно функция перемешивания
+    function shuffle(arr){
+        let compare = madness();
+        return arr.sort(compare);
+    }
+
+    let puzzleQuestions = [
+        "Что это такое: синий, большой, с усами и полностью набит зайцами?",
+        "Сижу верхом, Не ведаю на ком.",
+        "Ношу их много лет, а счету им не знаю.",
+        "Три глаза - три приказа, Красный - самый опасный."
+    ]
+
+    let rightAswrs = [
+        "Тролейбус",
+        "Шапка",
+        "Волосы",
+        "Светофор"
+    ];
+
+    let hushAswrs = [
+        "Ленин",
+        "Кочерга",
+        "Уругвай",
+        "Село",
+        "Пять",
+        "Дом",
+        "Сызрань",
+        "Дверь",
+        "Бутылка",
+        "Петр"
+    ];
+
+
+    let sumAswr = 0;
+
+    for(let i = 0; i < puzzleQuestions.length; i++){
+        let mixedAswrs = [];
+        for (let a = 0; a < 3; a++){
+            mixedAswrs.push(hushAswrs[Math.floor(Math.random() * 10)]);
+        }
+        mixedAswrs.push(rightAswrs[i]);
+        shuffle(mixedAswrs);
+        let indexItem = 1;
+        let orderedAswrs = mixedAswrs.map(function(mixedAswr) {
+            return " " + indexItem++ + ". " + mixedAswr;
+        });
+
+        let userAnwrNum = prompt(puzzleQuestions[i] + "\r\n \r\n" + orderedAswrs);
+        if(rightAswrs[i] == orderedAswrs[userAnwrNum - 1]){
+            alert("Верно! Это " + rightAswrs[i]);
+            sumAswr++;
+        } else
+            alert("Не верно! Это " + rightAswrs[i]);
+    }
+    document.write("Викторина закончилась. Давайте подведем итоги:<br><br>Вы правильно угадали " + sumAswr + " из 4 загадки<br><br>Спасибо за игру!");
+
+
+</script>
+</body>
+</html>

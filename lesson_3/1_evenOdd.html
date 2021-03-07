@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    'use strict';
+    let numbers = [];
+
+    for (let i = 0; i < 11; i++){
+        let arrLenght = numbers.push(i);
+    }
+    for (let i = 0; i < numbers.length; i++){
+        if(numbers[i] != 0 && numbers[i] % 2 === 0){
+            console.log(numbers[i] + " Четное число")
+        } else if(numbers[i] != 0 && numbers[i] % 2 !== 0){
+            console.log(numbers[i] + " Не четное число")
+        }else console.log(numbers[i] + " Это просто ноль")
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    'use strict';
+
+    //es5
+    // function Product(name, price) {
+    //     // тут у меня в this.name именно '.name' программа выделяет как 'unused difinition name' и предлагает удалить
+    //     this.name = name;
+    //     // а тут this.price '.price' показано нормально. Если не будет сложно, обьясните в 2х словах. редактор WS. Спасибо.
+    //     this.price = price;
+    // }
+    //
+    // Product.prototype.make25PercentDiscount = function () {
+    //     this.price = this.price - (this.price * 0.25);
+    // };
+
+    //es6
+    //я так понял что тут уже можно чтобы метод 'make25PercentDiscount' был в связке 'class'. Технически он же сразу записывается в прототип?
+    class Product {
+        constructor(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        make25PercentDiscount() {
+            this.price = this.price - (this.price * 0.25);
+        }
+    }
+
+    //когда запускаешься страницу, вночале в отладчике пишутся 2 обьекта уже  со скидкой 25%. Когда нажимаешь F5 то работает уже нормально. Вопрос почему?
+    const product1 = new Product('Al T-short', '200');
+    console.log(product1);
+    product1.make25PercentDiscount();
+    console.log(product1);
+
+</script>
+</body>
+</html>
