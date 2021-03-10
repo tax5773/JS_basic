@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <a href="https://picsum.photos/200/300" target="_blank">ссылка</a> -->
+
+    <!-- 
+    Задание.
+    С помощью insertAdjacentHTML добавьте в body ссылку по примеру из комментария выше.
+    При создании разметки используйте шаблонный литерал. Данные для ссылки ниже.
+    -->
+
+    <!--
+    Не совсем понял что именно нужно сделать. Если что, то можно было обойтись
+    без aData со свойствами, просто напрямую вписать переменные.
+    -->
+
+
+    <script>
+        'use strict';
+
+        let url = "https://picsum.photos/200/300";
+        let targetAttr = "_blank";
+        let linkText = "ссылка";
+        let aData = {
+            url: url,
+            targetAttr: targetAttr,
+            linkText: linkText
+        };
+        let profile = `
+        <a href='${aData.url}' target="${aData.targetAttr}">${aData.linkText}</a>
+        `;
+
+        let body = document.querySelector('body');
+        body.insertAdjacentHTML('afterbegin', profile)
+    </script>
+</body>
+</html>
